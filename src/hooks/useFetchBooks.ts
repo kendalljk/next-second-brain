@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 
 const OPEN_LIBRARY_API = "https://openlibrary.org/search.json";
-const COVER_LIBRARY_API = "https://covers.openlibrary.org/b/id/";
 
 type QueryProps = {
   title: string | null;
