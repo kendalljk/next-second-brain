@@ -5,25 +5,17 @@ import TextField from "@mui/material/TextField";
 import useFetchBooks from "@/hooks/useFetchBooks";
 
 type SearchBooksProps = {
-  setBooks: (books: any[]) => void;
-}
+    searchBooks: (title: string, author: string) => void;
+};
 
-const SearchBooks = ({setBooks}: SearchBooksProps) => {
-    const [title, setTitle] = useState<string | null>(null)
-    const [author, setAuthor] = useState<string | null>(null)
-    const fetchBooks = useFetchBooks({ title, author });
+const SearchBooks = ({searchBooks}: SearchBooksProps) => {
+    const [title, setTitle] = useState("")
+    const [author, setAuthor] = useState("")
 
-  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
-    console.log("fetching...")
-      event.preventDefault();
-        try {
-          const books = await fetchBooks();
-          setBooks(books);
-          console.log("Books",books)
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  const handleSearch = (event: React.FormEvent) => {
+    event.preventDefault()
+    searchBooks(title, author);
+  }
 
     return (
         <div>
@@ -39,17 +31,17 @@ const SearchBooks = ({setBooks}: SearchBooksProps) => {
                 <TextField
                     id="outlined-controlled"
                     label="Title"
-                    value={title || ""}
+                    value={title}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setTitle(event.target.value || null);
+                        setTitle(event.target.value);
                     }}
                 />
                 <TextField
                     id="outlined-controlled"
                     label="Author"
-                    value={author || ""}
+                    value={author}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                        setAuthor(event.target.value || null);
+                        setAuthor(event.target.value);
                     }}
                 />
                 <button type="submit">Search</button>

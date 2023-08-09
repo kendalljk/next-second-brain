@@ -19,16 +19,21 @@ const BookCard = ({
     const coverPath = "https://covers.openlibrary.org/b/id/";
 
     return (
-        <div key={key}>
-            <Image
-                src={`${coverPath}${cover_i}-L.jpg`}
-                alt={`${title} cover`}
-                width={200}
-                height={300}
-            />
-            <h2>Title: {title}</h2>
-            <h3>Author: {author_name?.join(", ")}</h3>
-            <h3>{first_publish_year}</h3>
+        <div
+            key={key}
+            className="w-full h-[40vh] flex flex-col justify-between text-center">
+            <div className="flex justify-center">
+                <Image
+                    src={`${coverPath}${cover_i}-L.jpg`}
+                    alt={`${title} cover`}
+            height={500}
+            width={300}
+                />
+            </div>
+            <div className="details-container h-1/3">
+                <h2>{title}</h2>
+                <h3>{author_name? author_name[0]: null}</h3>
+            </div>
         </div>
     );
 };
